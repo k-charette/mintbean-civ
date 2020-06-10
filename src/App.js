@@ -38,6 +38,7 @@ const App = () =>{
     // increase gold and city amount
     if (gold >= 15 && population >= 30 && cities >= 1){
       setFarmBorder('border-green-500')
+      setButtonDisable(true)
     } else {
       setFarmBorder('border-red-500')
     }
@@ -76,6 +77,10 @@ const App = () =>{
   const handleCreateFarm = () => {
     setFarm(farm => farm + 1)
     setGold(gold - 15)
+
+    if (population <= 30){
+      setButtonDisable(true)
+    }
 
     setInterval(() => {
       setGold(gold => gold + 2)
@@ -129,7 +134,7 @@ const App = () =>{
         <div>
         <img style={{ margin: 'auto', height: '40px', width: '40px'}}src='https://vignette.wikia.nocookie.net/civilization/images/4/48/Mine_%28Civ6%29.png/revision/latest/top-crop/width/720/height/900?cb=20190812195142' alt='farm'/>
           <h2> Mines {mine} </h2>
-          <button className={`m-2 p-2 border-2 border-red-500`} onClick={handleCreateMine} disabled={buttonDisable}> Build Mine 
+          <button className={`m-2 p-2 border-2 border-red-500 || ${mineBorder}`} onClick={handleCreateMine} disabled={buttonDisable}> Build Mine 
           <p className='text-xs font-bold pt-2'> Costs 30 Gold and Requires 2 Cities</p>
           <p className='text-xs font-bold pt-2 text-red-500'>{message}</p>
           </button>        
