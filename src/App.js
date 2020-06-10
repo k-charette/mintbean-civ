@@ -1,24 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import './App.css'
+import './styles/app.css'
 
-function App() {
+const App = () =>{
+  const [population, setPopulation] = useState(0)
+  const [settlement, setSettlement] = useState(0)
+
+  const handleClick = () => {
+    setPopulation(population + 1)
+  }
+
+  const handleCreateSettlement = () => {
+    if (population >= 10) {
+      setSettlement(settlement + 1)
+      setPopulation(population - 5)
+    } 
+  }
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='p-10 text-center'>
+      <div>
+        <h2> Population {population} </h2>
+        <h2> Settlements {settlement} </h2>
+      </div>
+      <div>
+        <button className='m-2 p-3 border border-gray-600'onClick={handleClick}> Increase Population </button>
+      </div>
+      <div>
+        <button className='m-2 p-3 border border-gray-600' onClick={handleCreateSettlement}> Create a Settlement (Requires a population higher than 10) </button>
+      </div>
     </div>
   );
 }
