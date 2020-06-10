@@ -17,6 +17,8 @@ code {
     monospace;
 }
 
-button {
+button, button:focus {
   width: 400px;
 }
+
+
